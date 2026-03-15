@@ -26,9 +26,10 @@
 - **CI/CD**: GitHub Actions (Windows MSVC), Jenkins (Linux matrix: GCC/Clang × Debug/Release)
 - **Sanitizers**: Enabled by default on Clang debug builds (`-DENABLE_SANITIZERS=ON`)
 - **Package Managers**: vcpkg/Conan compatible, add dependencies via `find_package()` and `target_link_libraries()`
+- **Running Applications**: After building, executables are in `build/<preset>/` (e.g., `./build/linux-gcc-debug/app`)
 
 ## Adding New Code
-- **Library functions**: Add header to `include/project/`, implementation to `src/`, update `CMakeLists.txt`
+- **Library functions**: Add header to `include/project/`, implementation to `src/`, update `CMakeLists.txt` (add to `add_library(core_lib ...)`), add test to `tests/test_*.cpp`, add benchmark to `bench/bench_*.cpp` with NOLINT
 - **Tests**: Add `tests/test_*.cpp` with GoogleTest fixtures
 - **Benchmarks**: Add `bench/bench_*.cpp` with Google Benchmark, NOLINT for clang-tidy
 - **Executables**: Add to `app/` directory, create new target in `CMakeLists.txt`

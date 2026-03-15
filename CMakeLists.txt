@@ -61,7 +61,7 @@ endif()
 # =====================================================
 # clang-tidy (target-based, MSVC-safe)
 # =====================================================
-option(ENABLE_CLANG_TIDY "Enable clang-tidy" ON)
+option(ENABLE_CLANG_TIDY "Enable clang-tidy" OFF)
 
 if (ENABLE_CLANG_TIDY)
     find_program(CLANG_TIDY_EXE
@@ -212,6 +212,11 @@ configure_file(
     ${CMAKE_SOURCE_DIR}/README.md
     @ONLY
 )
+
+# =====================================================
+# compile_commands.json is generated in build folder for clangd
+# (no need to copy to root since clangd is configured to read from build folder)
+# =====================================================
 
 set(PROJECT_AUTHOR "Zied Khzami")
 set(PROJECT_URL "https://github.com/ZiedKhzami/CppProjektWithCICD")

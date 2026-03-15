@@ -11,7 +11,8 @@
   // ------------------------------
   "C_Cpp.intelliSenseEngine": "disabled",
   "clangd.arguments": [
-    "--compile-commands-dir=${workspaceFolder}",
+    "--extra-arg=-I/home/zied/Workspace/CPP/CppProjektWithCICD/include",
+    "--extra-arg=-I/home/zied/Workspace/CPP/CppProjektWithCICD/build/linux-gcc-debug/_deps/benchmark-src/include",
     "--header-insertion=never",
     "--completion-style=detailed",
     "--pch-storage=memory"

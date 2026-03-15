@@ -1,7 +1,7 @@
 
-#include <gtest/gtest.h>
-
 #include "project/math.hpp"
+
+#include <gtest/gtest.h>
 
 TEST(Math, Add)
 {

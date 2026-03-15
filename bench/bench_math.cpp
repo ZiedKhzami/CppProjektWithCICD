@@ -7,19 +7,23 @@
 // benchmarks)
 
 #include "project/math.hpp"
+
 #include <benchmark/benchmark.h>
 
-namespace {
+namespace
+{
 
-// Benchmark function in lower_case (tidy would complain → ignored via NOLINT)
-auto bm_add(benchmark::State &state) -> void {
-  for (auto _ : state) { // '_' name is typical Benchmark idiom
-    auto result = project::add(123, 456);
+    // Benchmark function in lower_case (tidy would complain → ignored via NOLINT)
+    auto bm_add(benchmark::State &state) -> void
+    {
+        for (auto _ : state)
+        { // '_' name is typical Benchmark idiom
+            auto result = project::add(123, 456);
 
-    // Use new DoNotOptimize syntax (non-const reference)
-    benchmark::DoNotOptimize(result);
-  }
-}
+            // Use new DoNotOptimize syntax (non-const reference)
+            benchmark::DoNotOptimize(result);
+        }
+    }
 
 } // namespace
 

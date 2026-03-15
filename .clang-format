@@ -83,7 +83,7 @@ Cpp11BracedListStyle: true
 DerivePointerAlignment: false
 
 # Lambdas
-AllowShortLambdaOnASingleLine: Empty
+# AllowShortLambdaOnASingleLine: Empty  # Not supported in clang-format 20
 
 # ----------------------------------------------------
 #   MISC OPTIONS
@@ -91,4 +91,4 @@ AllowShortLambdaOnASingleLine: Empty
 SortUsingDeclarations: true
 IndentCaseLabels: true
 FixNamespaceComments: true
-KeepEmptyLinesAtStartOfBlocks: false
+# KeepEmptyLinesAtStartOfBlock: false  # Not supported in clang-format 20
