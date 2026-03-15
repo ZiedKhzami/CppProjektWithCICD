@@ -121,4 +121,3 @@ $RECYCLE.BIN/
 # configs/secrets
 secrets.json
 *.env
-.env.*

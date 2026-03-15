@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
+
 project(FirstProject
     VERSION 1.0.0
     DESCRIPTION "Modern C++20 Project with Tests, Benchmarks and Tooling"
@@ -24,7 +25,7 @@ enable_testing()
 # Compiler Warnings (No /std overrides here!)
 # =====================================================
 if (MSVC)
-    add_compile_options(
+    set(PROJECT_WARNING_FLAGS
         /W4
         /permissive-
         /EHsc
@@ -32,7 +33,7 @@ if (MSVC)
         /Zc:preprocessor
     )
 else()
-    add_compile_options(
+    set(PROJECT_WARNING_FLAGS
         -Wall -Wextra -Wpedantic
         -Wshadow -Wconversion -Wsign-conversion
     )
@@ -115,6 +116,7 @@ add_library(core_lib
 
 target_include_directories(core_lib PUBLIC include)
 target_compile_features(core_lib PUBLIC cxx_std_20)
+target_compile_options(core_lib PRIVATE ${PROJECT_WARNING_FLAGS})
 
 if (ENABLE_CLANG_TIDY AND CLANG_TIDY_EXE)
     set_property(TARGET core_lib PROPERTY CXX_CLANG_TIDY "${_CLANG_TIDY_ARGS}")
@@ -125,6 +127,7 @@ endif()
 # =====================================================
 add_executable(app app/main.cpp)
 target_link_libraries(app PRIVATE core_lib)
+target_compile_options(app PRIVATE ${PROJECT_WARNING_FLAGS})
 
 if (ENABLE_CLANG_TIDY AND CLANG_TIDY_EXE)
     set_property(TARGET app PROPERTY CXX_CLANG_TIDY "${_CLANG_TIDY_ARGS}")
@@ -152,6 +155,7 @@ target_link_libraries(unit_tests PRIVATE
     GTest::gtest
     GTest::gtest_main
 )
+target_compile_options(unit_tests PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_test(NAME unit_tests COMMAND unit_tests)
 
@@ -177,6 +181,7 @@ if (ENABLE_BENCHMARKS)
         core_lib
         benchmark::benchmark
     )
+    target_compile_options(benchmarks PRIVATE ${PROJECT_WARNING_FLAGS})
 endif()
 
 # =====================================================
@@ -198,6 +203,18 @@ if (ENABLE_DOXYGEN AND EXISTS "${CMAKE_SOURCE_DIR}/docs/Doxyfile.in")
         )
     endif()
 endif()
+
+# =====================================================
+# README Generation
+# =====================================================
+configure_file(
+    ${CMAKE_SOURCE_DIR}/README.md.in
+    ${CMAKE_SOURCE_DIR}/README.md
+    @ONLY
+)
+
+set(PROJECT_AUTHOR "Zied Khzami")
+set(PROJECT_URL "https://github.com/ZiedKhzami/CppProjektWithCICD")
 
 message(STATUS "====================================")
 message(STATUS " FirstProject configured successfully ")

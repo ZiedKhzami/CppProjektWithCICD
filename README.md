@@ -1,4 +1,4 @@
-📘 FirstProject – Modern C++20 Template
+📘 FirstProject v1.0.0 – Modern C++20 Project with Tests, Benchmarks and Tooling
 Ein vollständig modernes, professionelles C++20 Projekt‑Template mit:
 -   CMake (modern, target-based)
 -   Ninja + MSVC

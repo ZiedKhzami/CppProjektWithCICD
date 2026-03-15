@@ -14,9 +14,9 @@ namespace {
 // Benchmark function in lower_case (tidy would complain → ignored via NOLINT)
 auto bm_add(benchmark::State &state) -> void {
   for (auto _ : state) { // '_' name is typical Benchmark idiom
-    const auto result = project::add(123, 456);
+    auto result = project::add(123, 456);
 
-    // Avoid deprecated const-ref DoNotOptimize:
+    // Use new DoNotOptimize syntax (non-const reference)
     benchmark::DoNotOptimize(result);
   }
 }
