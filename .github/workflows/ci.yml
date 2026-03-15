@@ -1,0 +1,97 @@
+name: C++ CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  build-and-test:
+    name: Build + Test (Debug + Release) on Windows/MSVC
+    runs-on: windows-latest
+
+    env:
+      CMAKE_GENERATOR: Ninja
+      BUILD_TYPE: Debug
+
+    steps:
+      # --------------------------
+      # Checkout Code
+      # --------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --------------------------
+      # Install Dependencies
+      # --------------------------
+      - name: Install Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v4
+
+      - name: Install LLVM (clang-tidy, clang-format)
+        uses: llvm/actions/install-llvm@v15
+
+      # --------------------------
+      # Setup MSVC (x64)
+      # --------------------------
+      - name: Setup MSVC Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      # --------------------------
+      # CMake Configure (Debug)
+      # --------------------------
+      - name: Configure Debug
+        run: cmake --preset ninja-msvc-debug
+
+      # --------------------------
+      # Build Debug
+      # --------------------------
+      - name: Build Debug
+        run: cmake --build --preset build-debug --verbose
+
+      # --------------------------
+      # Run Tests (ctest)
+      # --------------------------
+      - name: Run Tests
+        run: ctest --preset test-debug --output-on-failure
+
+      # --------------------------
+      # Clang-Format Check
+      # --------------------------
+      - name: clang-format check
+        run: cmake --build build/debug --target format-check
+
+      # --------------------------
+      # Clang-Tidy (target-based)
+      # --------------------------
+      - name: clang-tidy (core_lib + app)
+        run: |
+          cmake --build build/debug --target core_lib
+          cmake --build build/debug --target app
+
+      # --------------------------
+      # Configure + Build Release (Benchmarks)
+      # --------------------------
+      - name: Configure Release
+        run: cmake --preset ninja-msvc-release
+
+      - name: Build Release (Benchmarks)
+        run: cmake --build --preset build-release --target benchmarks
+
+      # --------------------------
+      # Doxygen Docs (optional)
+      # --------------------------
+      - name: Build Documentation
+        # if: exists('docs/Doxyfile.in')
+        run: cmake --build build/debug --target docs
+
+      # --------------------------
+      # Upload Artifacts (optional)
+      # --------------------------
+      - name: Upload Release Binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: Release-Binaries
+          path: build/release/bin/
