@@ -1,0 +1,94 @@
+BasedOnStyle: LLVM
+Language: Cpp
+
+# ----------------------------------------------------
+#   INDENTATION & SPACING
+# ----------------------------------------------------
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+ColumnLimit: 120
+
+# Keep one space before pointer/reference alignment
+PointerAlignment: Right
+
+# Spaces
+SpaceBeforeParens: ControlStatements
+SpaceAfterTemplateKeyword: true
+SpacesInAngles: false
+SpacesInContainerLiterals: true
+
+# ----------------------------------------------------
+#   BRACES & LAYOUT
+# ----------------------------------------------------
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: Empty # "int f() {}" allowed, but bigger functions break
+AllowShortIfStatementsOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortLambdasOnASingleLine: false
+BreakBeforeBinaryOperators: None
+BreakInheritanceList: AfterColon
+
+# ----------------------------------------------------
+#   INCLUDES
+# ----------------------------------------------------
+IncludeBlocks: Regroup
+SortIncludes: true
+IncludeCategories:
+  - Regex: '^"project/.*"'
+    Priority: 1
+  - Regex: '^"bench/.*"'
+    Priority: 2
+  - Regex: '^"tests/.*"'
+    Priority: 3
+  - Regex: "^<benchmark/.*>"
+    Priority: 4
+  - Regex: "^<gtest/.*>"
+    Priority: 5
+  - Regex: "^<.*>"
+    Priority: 10
+  - Regex: ".*"
+    Priority: 100
+
+# ----------------------------------------------------
+#   COMMENTS & DOCS
+# ----------------------------------------------------
+ReflowComments: true
+CommentPragmas: "^ IWYU pragma:"
+
+# ----------------------------------------------------
+#   NAMESPACES & ALIGNMENT
+# ----------------------------------------------------
+NamespaceIndentation: All
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: true
+
+# ----------------------------------------------------
+#   MODERN C++ FEATURES
+# ----------------------------------------------------
+BraceWrapping:
+  AfterFunction: true
+  AfterControlStatement: true
+  AfterNamespace: false
+  AfterClass: true
+
+Cpp11BracedListStyle: true
+
+# Keep 'auto x = ...;' style clean
+DerivePointerAlignment: false
+
+# Lambdas
+AllowShortLambdaOnASingleLine: Empty
+
+# ----------------------------------------------------
+#   MISC OPTIONS
+# ----------------------------------------------------
+SortUsingDeclarations: true
+IndentCaseLabels: true
+FixNamespaceComments: true
+KeepEmptyLinesAtStartOfBlocks: false

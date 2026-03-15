@@ -1,0 +1,164 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "windows-debug",
+      "displayName": "Windows Debug (MSVC)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/windows-debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-release",
+      "displayName": "Windows Release (MSVC)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/windows-release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "linux-gcc-debug",
+      "displayName": "Linux Debug (GCC)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/linux-gcc-debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-gcc-release",
+      "displayName": "Linux Release (GCC)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/linux-gcc-release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "linux-clang-debug",
+      "displayName": "Linux Debug (Clang)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/linux-clang-debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "ENABLE_SANITIZERS": "ON"
+      }
+    },
+    {
+      "name": "linux-clang-release",
+      "displayName": "Linux Release (Clang)",
+      "inherits": "default",
+      "binaryDir": "${sourceDir}/build/linux-clang-release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-debug",
+      "configurePreset": "windows-debug"
+    },
+    {
+      "name": "build-release",
+      "configurePreset": "windows-release"
+    },
+    {
+      "name": "gcc-debug",
+      "configurePreset": "linux-gcc-debug"
+    },
+    {
+      "name": "gcc-release",
+      "configurePreset": "linux-gcc-release"
+    },
+    {
+      "name": "clang-debug",
+      "configurePreset": "linux-clang-debug"
+    },
+    {
+      "name": "clang-release",
+      "configurePreset": "linux-clang-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-windows-debug",
+      "configurePreset": "windows-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-gcc-debug",
+      "configurePreset": "linux-gcc-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "test-clang-debug",
+      "configurePreset": "linux-clang-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

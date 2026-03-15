@@ -1,0 +1,124 @@
+# ================================
+# C++ / CMake / Ninja / VS Code
+# ================================
+
+# --- Build-Verzeichnisse (Out-of-Source) ---
+build/
+build-*/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# --- CMake generierte Dateien ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+_install/*
+install_manifest.txt
+CTestTestfile.cmake
+Testing/
+Makefile
+# Optional: Behalten, wenn du es brauchst (VS Code IntelliSense / clang-tools)
+# compile_commands.json
+
+# --- Ninja ---
+.ninja_deps
+.ninja_log
+rules.ninja
+build.ninja
+
+# --- Visual Studio / MSVC Artefakte ---
+*.obj
+*.pdb
+*.idb
+*.ilk
+*.pch
+*.pchi
+*.exp
+*.lib
+*.dll
+*.exe
+*.iobj
+*.ipdb
+*.rsp
+
+# --- Clang/GCC Artefakte (für Cross-Tooling) ---
+*.o
+*.a
+*.so
+*.dylib
+*.out
+
+# --- Coverage / Sanitizer / Profiler ---
+*.gcda
+*.gcno
+*.profraw
+*.profdata
+*.san.txt
+coverage/
+lcov.info
+
+# --- Logs / Caches / Temp ---
+*.log
+*.cache
+.cache/
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# --- clang-tidy/clangd/Static-Analysis ---
+.clangd/
+.clang-tidy.cache
+.clang-tidy.yaml
+.clang-static-analyzer/
+
+# --- Code-Format (optional ignorieren, wenn projektweit festgelegt) ---
+# .clang-format
+
+# --- VS Code ---
+#.vscode/
+# Falls du settings/launch behalten willst, kommentiere die nächste Zeile aus:
+# .vscode/*
+
+# --- JetBrains (CLion) ---
+.idea/
+# CLion CMake Profile Builds
+cmake-build-*/
+
+# --- Paketmanager ---
+# vcpkg
+vcpkg_installed/
+vcpkg-configuration.json.user
+# Conan
+.conan/
+conanbuildinfo.*
+conan.lock
+
+# --- Python/Tools Scripte (falls vorhanden) ---
+__pycache__/
+*.pyc
+
+# --- OS-spezifisch ---
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Linux
+.directory
+
+# --- Sonstiges ---
+*.tgz
+*.zip
+*.7z
+
+# --- Projektspezifische Beispiele (anpassen, wenn vorhanden) ---
+# configs/secrets
+secrets.json
+*.env
+.env.*

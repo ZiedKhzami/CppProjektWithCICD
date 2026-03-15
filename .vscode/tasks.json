@@ -1,0 +1,188 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure (Windows Debug)",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --preset windows-debug && copy /Y build\\windows-debug\\compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure (Windows Release)",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --preset windows-release && copy /Y build\\windows-release\\compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure (Linux GCC Debug)",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --preset linux-gcc-debug && cp -f build/linux-gcc-debug/compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure (Linux GCC Release)",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --preset linux-gcc-release && cp -f build/linux-gcc-release/compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure (Linux Clang Debug)",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --preset linux-clang-debug && cp -f build/linux-clang-debug/compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Configure (Linux Clang Release)",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --preset linux-clang-release && cp -f build/linux-clang-release/compile_commands.json compile_commands.json"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Debug Windows",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --build --preset build-debug"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Build Release Windows",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --build --preset build-release"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Build Debug GCC",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build --preset gcc-debug"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Build Release GCC",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build --preset gcc-release"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Build Debug Clang",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build --preset clang-debug"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Build Release Clang",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build --preset clang-release"
+      },
+      "group": "build"
+    },
+    {
+      "label": "Test Debug Windows",
+      "type": "shell",
+      "windows": {
+        "command": "ctest --preset test-debug --output-on-failure"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Test Debug GCC",
+      "type": "shell",
+      "linux": {
+        "command": "ctest --test-dir build/linux-gcc-debug --output-on-failure"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Test Debug Clang",
+      "type": "shell",
+      "linux": {
+        "command": "ctest --test-dir build/linux-clang-debug --output-on-failure"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Format Windows",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --build build/windows-debug --target format"
+      }
+    },
+    {
+      "label": "Format Linux GCC",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-gcc-debug --target format"
+      }
+    },
+    {
+      "label": "Format Linux Clang",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-clang-debug --target format"
+      }
+    },
+    {
+      "label": "Format-Check Windows",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --build build\\windows-debug --target format-check"
+      }
+    },
+    {
+      "label": "Format-Check Linux GCC",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-gcc-debug --target format-check"
+      }
+    },
+    {
+      "label": "Format-Check Linux Clang",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-clang-debug --target format-check"
+      }
+    },
+    {
+      "label": "Docs Windows",
+      "type": "shell",
+      "windows": {
+        "command": "cmake --build build\\windows-debug --target docs"
+      }
+    },
+    {
+      "label": "Docs Linux GCC",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-gcc-debug --target docs"
+      }
+    },
+    {
+      "label": "Docs Linux Clang",
+      "type": "shell",
+      "linux": {
+        "command": "cmake --build build/linux-clang-debug --target docs"
+      }
+    }
+  ]
+}

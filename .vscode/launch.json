@@ -1,0 +1,64 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Windows: Run app (Debug)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/windows-debug/bin/app.exe",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Windows: Run unit_tests",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/windows-debug/bin/tests/unit_tests.exe",
+      "args": [
+        "--gtest_color=yes"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Windows: Run benchmarks (Release)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/windows-release/bin/bench/benchmarks.exe",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Linux GCC: Run app",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/linux-gcc-debug/bin/app",
+      "MIMode": "gdb",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Linux GCC: Run tests",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/linux-gcc-debug/bin/tests/unit_tests",
+      "args": [
+        "--gtest_color=yes"
+      ],
+      "MIMode": "gdb",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Linux Clang: Run app",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/linux-clang-debug/bin/app",
+      "MIMode": "gdb",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "Debug portfile(s)",
+      "cmakeDebugType": "external",
+      "pipeName": "/tmp/vcpkg_ext_portfile_dbg",
+      "preLaunchTask": "Debug vcpkg commands"
+    }
+  ]
+}

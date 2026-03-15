@@ -1,0 +1,15 @@
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+OUTPUT_DIRECTORY       = "@CMAKE_BINARY_DIR@/docs"
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+EXTRACT_ALL            = YES
+RECURSIVE              = YES
+INPUT                  = "@CMAKE_SOURCE_DIR@/include" "@CMAKE_SOURCE_DIR@/src"
+FILE_PATTERNS          = *.hpp *.h *.cpp
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+JAVADOC_AUTOBRIEF      = YES
+BUILTIN_STL_SUPPORT    = YES
+WARN_LOGFILE           = "@CMAKE_BINARY_DIR@/docs/doxygen_warnings.log"

@@ -1,0 +1,33 @@
+{
+  // ------------------------------
+  // CMake + Presets
+  // ------------------------------
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": true,
+  "cmake.buildBeforeRun": true,
+  // ------------------------------
+  // clangd (IntelliSense)
+  // ALWAYS read compile_commands.json from project root!
+  // ------------------------------
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}",
+    "--header-insertion=never",
+    "--completion-style=detailed",
+    "--pch-storage=memory"
+  ],
+  // ------------------------------
+  // Formatting
+  // ------------------------------
+  "editor.formatOnSave": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  // ------------------------------
+  // File associations
+  // ------------------------------
+  "files.associations": {
+    "*.hpp": "cpp",
+    "*.h": "cpp"
+  }
+}

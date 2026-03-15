@@ -1,0 +1,53 @@
+Checks: >
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  readability-*,
+  modernize-*,
+  cppcoreguidelines-*,
+  hicpp-*,
+  misc-*,
+
+  # --- Deaktivierte Checks, die bei echten Projekten zu False Positives führen ---
+  -readability-identifier-naming,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -hicpp-no-array-decay,
+  -hicpp-avoid-c-arrays,
+  -modernize-use-trailing-return-type,
+  -misc-include-cleaner,
+  -misc-use-anonymous-namespace
+
+WarningsAsErrors: "*"
+
+# 👇 clang-tidy soll NUR ECHTEN PROJEKTCODE prüfen
+# Benchmarks (bench/), _deps/ etc. werden NICHT vom Regex erfasst
+HeaderFilterRegex: "^(include|src|app|tests)/"
+
+FormatStyle: none
+
+ExtraArgs:
+  - -DNOMINMAX
+  - -DUNICODE
+  - -D_UNICODE
+
+CheckOptions:
+  # --- Naming Regeln für deinen Projektcode ---
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+
+  # --- Modernize ---
+  - key: modernize-use-nodiscard.Recommended
+    value: true
+  - key: modernize-use-override.IgnoreDestructors
+    value: true
